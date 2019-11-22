@@ -4,7 +4,9 @@
   remote_user: root
   tasks:
     - name: install nginx
-      state: present
+      yum:
+        name: nginx
+        state: present
     - name: start and enable nginx
       service:
         name: nginx
@@ -22,4 +24,4 @@
       register: result
       delegate_to: localhost
     - debug:
-        msg: "HTTP" Status code :: {{ result.status }}"
+        msg: "HTTP Status code :: {{ result.status }}"
